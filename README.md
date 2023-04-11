@@ -15,8 +15,8 @@ Use the following format to run the modifier for your own article:
 ```
 python modify.py [input filename]
 ```
-or
+or to have the program generate an article for you
 ```
 python modify.py
 ```
-to have the program generate an article for you
+
