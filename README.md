@@ -10,5 +10,5 @@ pip install -r requirements.txt
 ## Usage
 Use the following format to run the modifier:
 ```
-python modifier.py [input filename]
+python modify.py [input filename]
 ```
