@@ -11,7 +11,12 @@ pip install beautifulsoup4
 ```
 
 ## Usage
-Use the following format to run the modifier:
+Use the following format to run the modifier for your own article:
 ```
 python modify.py [input filename]
 ```
+or
+```
+python modify.py
+```
+to have the program generate an article for you
