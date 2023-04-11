@@ -1,4 +1,6 @@
 import sys
+import os
+import re
 import input_validation
 import nltk
 import random
@@ -36,10 +38,16 @@ if __name__ == "__main__":
         sentences = get_sentences(sys.argv[1])
         new_sentences = replace_random_sentence(sentences)
             
-        # Print the new sentences
-        for sentence in new_sentences:
-            print(sentence)
-            print() # Add a blank line for readability
+        # Create a new file name with '_modified' added to the original filename
+        file_name, file_extension = os.path.splitext(sys.argv[1])
+        new_file_name = file_name + '_modified' + file_extension
+
+        # write new text to file
+        with open(new_file_name, 'w') as f:
+            for sentence in new_sentences:
+                f.write(sentence + "\n")
+                
+        print(f'New sentences written to file {new_file_name}')
     # if user didnt put in their own file, grab one using news api
     else:
         # Initialize the NewsAPI client with your API key
@@ -67,10 +75,19 @@ if __name__ == "__main__":
                     footer.extract()
 
                 article_content = soup.get_text()
+                # format article name
+                article_title = article['title']
+                article_title = article_title.replace("/", "")
+                article_title = article_title.replace(" ", "_")
+                article_title = re.sub('[^0-9a-zA-Z]+', '_', article_title)
+                article_file_name = article_title + "_modified" + ".txt"
 
-                # Print the content of the article
+                # save article to file system
                 print(article['url'])
-                print(article_content)
+                with open(article_file_name, "w") as outfile:
+                    outfile.write(article_content)
+
+                print(f"Article content saved to {article_file_name}")
             else:
                 print(f"Error: Failed to retrieve article content. Response status code: {response.status_code}")
         except requests.exceptions.RequestException as e:
