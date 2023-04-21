@@ -8,6 +8,7 @@ pip install -r requirements.txt
 pip install newsapi-python
 pip install requests
 pip install beautifulsoup4
+pip install nltk
 ```
 
 ## Usage
