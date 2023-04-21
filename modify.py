@@ -46,7 +46,7 @@ if __name__ == "__main__":
         with open(new_file_name, 'w') as f:
             for sentence in new_sentences:
                 f.write(sentence + "\n")
-                
+
         print(f'New sentences written to file {new_file_name}')
     # if user didnt put in their own file, grab one using news api
     else:
@@ -84,10 +84,15 @@ if __name__ == "__main__":
 
                 # save article to file system
                 print(article['url'])
-                with open(article_file_name, "w") as outfile:
-                    outfile.write(article_content)
+                # Split the file into sentences
+                nltk.download('punkt')  
+                sentences = nltk.sent_tokenize(article_content)
+                new_sentences = replace_random_sentence(sentences)
 
-                print(f"Article content saved to {article_file_name}")
+                # write new text to file
+                with open(article_file_name, "w", encoding="utf-8") as outfile:
+                    for sentence in new_sentences:
+                        outfile.write(sentence + "\n")
             else:
                 print(f"Error: Failed to retrieve article content. Response status code: {response.status_code}")
         except requests.exceptions.RequestException as e:
