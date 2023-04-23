@@ -1,5 +1,5 @@
 import unittest
-import modify.py
+import modify
     
 class Testget_sentence(unittest.TestCase):
   
