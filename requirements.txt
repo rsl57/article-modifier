@@ -7,3 +7,4 @@ requests==2.28.2
 urllib3==1.26.15
 yarg==0.1.9
 nltk==3.8.1
+newsapi-python==0.2.7
